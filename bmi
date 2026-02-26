@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Checker</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- Icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#e6ccff,#ffcce6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:350px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+    color:#b366ff;
+}
+
+.icon{
+    font-size:60px;
+    color:#ff66b2;
+    margin-bottom:10px;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:2px solid #e6ccff;
+    font-size:16px;
+}
+
+button{
+    background:#ff99cc;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#cc66ff;
+}
+
+.result{
+    margin-top:15px;
+    font-weight:bold;
+    color:#9933ff;
+}
+
+.illustration{
+    width:120px;
+    margin:10px auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="icon">
+        <i class="fa-solid fa-heart-pulse"></i>
+    </div>
+
+    <h1>BMI Checker</h1>
+
+    <!-- Ilustrasi -->
+    <img class="illustration"
+    src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+    alt="BMI Illustration">
+
+    <input type="number" id="weight" placeholder="Berat Badan (kg)">
+    <input type="number" id="height" placeholder="Tinggi Badan (cm)">
+
+    <br>
+    <button onclick="hitungBMI()">
+        <i class="fa-solid fa-calculator"></i> Hitung BMI
+    </button>
+
+    <div class="result" id="hasil"></div>
+
+</div>
+
+<script>
+
+function hitungBMI(){
+
+    let berat = document.getElementById("weight").value;
+    let tinggi = document.getElementById("height").value/100;
+
+    if(berat=="" || tinggi==""){
+        document.getElementById("hasil").innerHTML="Isi data dulu ya!";
+        return;
+    }
+
+    let bmi = berat/(tinggi*tinggi);
+    let kategori="";
+
+    if(bmi < 18.5){
+        kategori="Kurus";
+    }
+    else if(bmi < 25){
+        kategori="Normal";
+    }
+    else if(bmi < 30){
+        kategori="Kelebihan Berat";
+    }
+    else{
+        kategori="Obesitas";
+    }
+
+    document.getElementById("hasil").innerHTML=
+        "BMI kamu: "+bmi.toFixed(2)+"<br>Kategori: "+kategori;
+}
+
+</script>
+
+</body>
+</html>
